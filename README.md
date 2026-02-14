@@ -1,7 +1,16 @@
 # Air Quality ETL Pipeline
 
 ## Overview
-This project builds an end-to-end ETL pipeline that processes real-time air quality data from 490 monitoring stations across India. Using data from data.gov.in, the pipeline transforms raw pollutant measurements into analytics-ready datasets for calculating AQI scores, identifying pollution hotspots, and ranking stations by air quality levels.
+I wanted to get comfortable with the Databricks platform and practice building ETL pipelines with real, messy data from India. Air quality data felt relevant given how bad the air has been lately.
+
+This pipeline processes data from 490 monitoring stations across India, transforming raw CSV files from data.gov.in through Bronze-Silver-Gold layers. The end result is clean, analysis-ready data for calculating AQI scores and ranking stations by pollution levels.
+
+This is my first Databricks/PySpark project. I'm starting with batch processing to nail the fundamentals - cleaning messy data, handling nulls, and building proper data architecture - before moving to streaming pipelines.
+
+## Pipeline Flow
+
+![Pipeline Architecture](images/architecture.png)
+*Bronze → Silver → Gold transformation flow*
 
 ## Architecture
 
@@ -20,6 +29,12 @@ The pipeline follows the Medallion Architecture pattern:
   - Rank stations and cities by pollution levels.
   - Identify most polluted areas.
   - Generate time-series trends.
+
+ ## Challenges I Faced
+1. **Pivot confusion** - Kept losing my metadata columns until I realized I needed to add them ALL to groupBy, not just station.
+2. **Cast errors with "NA"** - First tried `when()` + `cast()` but it threw errors. Had to research and find `try_cast` instead.
+3. **Timestamp parsing** - Dates kept coming up null because I used MM-dd-yyyy instead of dd-MM-yyyy (Indian format).
+4. **Understanding why nulls are okay** - At first wanted to drop all nulls, then realized that's throwing away valid data.
 
 ## Data Quality Issues Found & Solutions
 
@@ -47,7 +62,7 @@ The pipeline follows the Medallion Architecture pattern:
 
 ## Dataset
 - **Source**: data.gov.in
-- **Date**: February 14, 2026 snapshot
+- **Date**: February 14, 2026 (single-day snapshot)
 - **Pollutants Measured**: SO2, CO, NO2, OZONE, PM2.5, PM10, NH3
 - **Stations**: 490 monitoring locations across Indian cities
 
