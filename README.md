@@ -1,7 +1,7 @@
 # Air Quality ETL Pipeline
 
 ## Overview
-This project builds an end-to-end ETL pipeline that processes real-time air quality data from 490 monitoring stations across India. Using data from data.gov.in (Bihar State Pollution Control Board), the pipeline transforms raw pollutant measurements into analytics-ready datasets for calculating AQI scores, identifying pollution hotspots, and ranking stations by air quality levels.
+This project builds an end-to-end ETL pipeline that processes real-time air quality data from 490 monitoring stations across India. Using data from data.gov.in, the pipeline transforms raw pollutant measurements into analytics-ready datasets for calculating AQI scores, identifying pollution hotspots, and ranking stations by air quality levels.
 
 ## Architecture
 
