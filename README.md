@@ -83,12 +83,15 @@ Could come back and add API ingestion or historical data later, but for now this
 
 ## Files
 ```
+air-quality-etl-databricks/
 ├── notebooks/
 │   ├── 01_bronze_layer.py
 │   ├── 02_silver_layer.py  
 │   └── 03_gold_layer.py
 ├── data/
 │   └── aqi_data.csv
+├── images/
+│   └── architecture.png
 └── README.md
 ```
 
